@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wulff Consulting AS – Organisasjonsdesign for mennesker og KI</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="description" content="Wulff Consulting AS – organisasjonsdesign for mennesker og KI. Rådgivning, foredrag og fasilitering ved Kristin Wulff, ph.d., Trondheim.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Layout: smal redaksjonell kolonne + nettverkstegning (multiteam-system) i heroen; innhold som strømmer. */
+:root {
+  --paper: #f3f4ef;
+  --surface: #ffffff;
+  --ink: #13302b;
+  --muted: #5b6c67;
+  --line: #d3d9d1;
+  --accent: #d99a12;
+  --accent-ink: #13302b;
+  --display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body: "Newsreader", Georgia, "Times New Roman", serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --max: 1120px;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0e1917; --surface: #15231f; --ink: #e6ebe4; --muted: #9aaba5;
+    --line: #2a3b36; --accent: #f0b73e; --accent-ink: #0e1917; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0e1917; --surface: #15231f; --ink: #e6ebe4; --muted: #9aaba5;
+  --line: #2a3b36; --accent: #f0b73e; --accent-ink: #0e1917; color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 1.1875rem; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+img { max-width: 100%; }
+a { color: inherit; text-decoration-color: var(--accent); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+a:hover { color: var(--accent); }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+h1, h2, h3 { font-family: var(--display); line-height: 1.08; text-wrap: balance; margin: 0; letter-spacing: -0.01em; }
+.wrap { max-width: var(--max); margin: 0 auto; padding: 0 clamp(16px, 4vw, 40px); }
+.mono { font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.02em; }
+
+/* Topp */
+header.top { position: sticky; top: 0; z-index: 10; background: color-mix(in srgb, var(--paper) 88%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 64px; flex-wrap: wrap; }
+.brand { display: flex; align-items: center; gap: 12px; text-decoration: none; font-family: var(--display); }
+.brand .mark { width: 44px; height: auto; fill: var(--ink); }
+.brand .mark .o1 { fill: var(--accent); }
+.brand:hover { color: var(--ink); }
+.brand:hover .mark .o1 { transform: translate(3px, 2px); }
+.brand .mark .o1 { transition: transform .25s ease; }
+@media (prefers-reduced-motion: reduce) { .brand .mark .o1 { transition: none; } }
+.brand .word { display: flex; flex-direction: column; line-height: 0.95; font-weight: 800; font-size: 1.2rem; font-stretch: 80%; letter-spacing: -0.01em; }
+.brand .word span { font-weight: 400; font-size: 0.86rem; font-stretch: 100%; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); border-top: 1.5px solid var(--ink); padding-top: 3px; margin-top: 3px; }
+.heritage { display: flex; gap: 16px; align-items: center; margin-top: 8px; font-size: 0.95rem; color: var(--muted); }
+.heritage img { width: 150px; background: #fff; padding: 8px 10px; border-radius: 4px; border: 1px solid var(--line); }
+nav.main { display: flex; gap: clamp(12px, 2vw, 26px); flex-wrap: wrap; font-family: var(--display); font-size: 0.95rem; }
+nav.main a { text-decoration: none; padding: 6px 0; }
+nav.main a.cta { background: var(--ink); color: var(--paper); padding: 6px 14px; border-radius: 999px; }
+nav.main a.cta:hover { background: var(--accent); color: var(--accent-ink); }
+
+/* Hero */
+.hero { position: relative; border-bottom: 1px solid var(--line); overflow: hidden; }
+.hero canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.hero .wrap { position: relative; padding-top: clamp(56px, 9vw, 112px); padding-bottom: clamp(56px, 8vw, 100px); }
+.hero .kicker { color: var(--muted); margin-bottom: 20px; display: flex; gap: 10px; flex-wrap: wrap; }
+.hero .kicker span { border: 1px solid var(--line); background: var(--paper); padding: 3px 10px; border-radius: 999px; }
+.hero h1 { font-size: clamp(2.3rem, 7.4vw, 5.8rem); font-weight: 800; font-stretch: 78%; max-width: 14ch; letter-spacing: -0.025em; hyphens: manual; overflow-wrap: break-word; }
+.hero h1 em { font-style: normal; color: var(--paper); background: var(--ink); padding: 0 0.12em; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+.hero .lead { max-width: 34rem; margin: 28px 0 32px; font-size: 1.3rem; background: color-mix(in srgb, var(--paper) 80%, transparent); }
+.btns { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn { font-family: var(--display); font-weight: 600; text-decoration: none; padding: 12px 22px; border-radius: 999px; border: 2px solid var(--ink); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.btn.primary:hover { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+.btn.ghost { background: var(--paper); }
+.btn.ghost:hover { color: var(--ink); border-color: var(--accent); }
+
+/* Seksjoner */
+section { padding: clamp(56px, 8vw, 96px) 0; border-bottom: 1px solid var(--line); }
+.sec-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 24px 48px; align-items: end; margin-bottom: 40px; }
+.sec-head h2 { font-size: clamp(2rem, 4.5vw, 3.2rem); font-weight: 750; font-stretch: 82%; }
+.sec-head p { margin: 0; color: var(--muted); max-width: 40rem; }
+@media (max-width: 760px) { .sec-head { grid-template-columns: 1fr; } }
+
+/* Tjenester */
+.services { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); border-top: 2px solid var(--ink); }
+.service { padding: 24px 24px 28px 0; border-bottom: 1px solid var(--line); }
+.service + .service { padding-left: 24px; border-left: 1px solid var(--line); }
+@media (max-width: 760px) { .service + .service { padding-left: 0; border-left: 0; } }
+.service .mono { color: var(--muted); }
+.service h3 { font-size: 1.45rem; font-weight: 700; margin: 10px 0 8px; font-stretch: 88%; }
+.service p { margin: 0; font-size: 1.05rem; }
+
+/* Strøm */
+.chips { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
+.chip { font-family: var(--mono); font-size: 0.8rem; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; }
+.chip[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.chip:hover { border-color: var(--accent); }
+.feed { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 16px; }
+.item { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; position: relative; }
+.item::before { content: ""; position: absolute; left: 0; top: 18px; bottom: 18px; width: 3px; background: var(--tag, var(--muted)); border-radius: 0 2px 2px 0; }
+.item .meta { display: flex; justify-content: space-between; gap: 12px; color: var(--muted); flex-wrap: wrap; }
+.item .tag { color: var(--ink); font-weight: 500; }
+.item h3 { font-size: 1.25rem; font-weight: 650; font-stretch: 90%; }
+.item p { margin: 0; font-size: 1rem; color: var(--muted); }
+.item a.more { margin-top: auto; font-family: var(--display); font-weight: 600; font-size: 0.95rem; }
+.item[data-type="Oppdrag"] { --tag: var(--accent); }
+.item[data-type="Foredrag"] { --tag: var(--ink); }
+.item[data-type="LinkedIn"] { --tag: #3d7cc9; }
+.item.linkedin { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.item.linkedin p, .item.linkedin .meta { color: color-mix(in srgb, var(--paper) 75%, transparent); }
+.item.linkedin .tag { color: var(--paper); }
+.item.linkedin a.more { color: var(--accent); }
+
+/* Foredrag */
+.talks { display: grid; gap: 0; border-top: 2px solid var(--ink); }
+.talk { display: grid; grid-template-columns: 8rem minmax(0, 1fr) auto; gap: 8px 24px; align-items: baseline; padding: 20px 0; border-bottom: 1px solid var(--line); }
+.talk .year { font-family: var(--display); font-size: 2rem; font-weight: 800; font-stretch: 75%; color: var(--accent); line-height: 1; }
+.talk h3 { font-size: 1.35rem; font-weight: 700; font-stretch: 88%; }
+.talk p { margin: 4px 0 0; color: var(--muted); font-size: 1rem; }
+.talk p.q { font-style: italic; color: var(--ink); max-width: 44rem; margin: 8px 0 6px; padding-left: 14px; border-left: 3px solid var(--accent); }
+.talk .links { display: flex; gap: 14px; flex-wrap: wrap; font-family: var(--display); font-weight: 600; font-size: 0.95rem; }
+@media (max-width: 640px) { .talk { grid-template-columns: 1fr; } }
+
+/* Undervisning */
+.courses { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 48px; }
+.course { border-top: 1px solid var(--ink); padding-top: 14px; }
+.course .mono { color: var(--accent); font-weight: 500; font-size: 0.9rem; }
+.course h4 { font-family: var(--display); font-size: 1.15rem; margin: 4px 0 6px; font-weight: 650; font-stretch: 90%; }
+.course p { margin: 0; font-size: 0.98rem; color: var(--muted); }
+
+/* Artikler */
+.articles { columns: 2 340px; column-gap: 48px; }
+.theme { break-inside: avoid; margin-bottom: 32px; }
+.theme h3 { font-size: 1.05rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; font-stretch: 85%; color: var(--muted); padding-bottom: 8px; border-bottom: 2px solid var(--ink); margin-bottom: 4px; display: flex; justify-content: space-between; }
+.theme ol { list-style: none; margin: 0; padding: 0; }
+.theme li { border-bottom: 1px solid var(--line); }
+.theme li a { display: flex; gap: 12px; padding: 10px 0; text-decoration: none; font-size: 1.05rem; line-height: 1.35; }
+.theme li a::after { content: "↗"; margin-left: auto; color: var(--muted); font-family: var(--mono); font-size: 0.85rem; }
+.theme li a:hover::after { color: var(--accent); }
+
+.research { margin-top: 56px; }
+.research h3.rh { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 750; font-stretch: 82%; margin-bottom: 20px; }
+.pubs { list-style: none; margin: 0; padding: 0; border-top: 2px solid var(--ink); }
+.pub { display: grid; grid-template-columns: 4.5rem minmax(0, 1fr); gap: 4px 20px; padding: 18px 0; border-bottom: 1px solid var(--line); }
+.pub .yr { font-family: var(--display); font-weight: 800; font-size: 1.5rem; font-stretch: 75%; color: var(--accent); line-height: 1.1; }
+.pub a.t { font-family: var(--display); font-weight: 650; font-size: 1.2rem; font-stretch: 90%; line-height: 1.25; text-decoration: none; }
+.pub a.t:hover { text-decoration: underline; }
+.pub .src { color: var(--muted); display: block; margin-top: 4px; }
+.pub p { margin: 6px 0 0; font-size: 1rem; color: var(--muted); max-width: 46rem; }
+@media (max-width: 560px) { .pub { grid-template-columns: 1fr; } }
+/* Om */
+.about { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 48px; }
+.about p { margin: 0 0 1em; max-width: 38rem; }
+.about .big { font-size: 1.45rem; line-height: 1.45; }
+.facts { border-top: 2px solid var(--ink); align-self: start; }
+.fact { display: grid; grid-template-columns: 6.5rem 1fr; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--line); font-size: 1rem; }
+.fact .mono { color: var(--muted); padding-top: 3px; }
+.fact strong { font-family: var(--display); font-weight: 700; font-size: 1.6rem; font-stretch: 80%; display: block; line-height: 1; }
+@media (max-width: 760px) { .about { grid-template-columns: 1fr; } }
+
+/* Kontakt */
+.contact { background: var(--ink); color: var(--paper); border-bottom: 0; }
+.contact .sec-head p { color: color-mix(in srgb, var(--paper) 70%, transparent); }
+.contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; }
+.contact-grid div { border-top: 1px solid color-mix(in srgb, var(--paper) 30%, transparent); padding-top: 14px; }
+.contact-grid .mono { color: var(--accent); display: block; margin-bottom: 4px; }
+.contact-grid a, .contact-grid span.v { font-family: var(--display); font-size: 1.3rem; font-weight: 600; font-stretch: 90%; word-break: break-word; }
+.contact a:hover { color: var(--accent); }
+footer { background: var(--ink); color: color-mix(in srgb, var(--paper) 60%, transparent); padding: 24px 0 40px; font-family: var(--mono); font-size: 0.8rem; }
+footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; border-top: 1px solid color-mix(in srgb, var(--paper) 20%, transparent); padding-top: 20px; }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Wulff Consulting AS, til toppen"><svg class="mark" viewBox="8 8 110 69" aria-hidden="true"><ellipse class="o1" cx="26.5" cy="28.5" rx="16.5" ry="11.5"/><ellipse cx="94.5" cy="21.5" rx="21.5" ry="11.5"/><ellipse cx="88.5" cy="59" rx="24.5" ry="16"/></svg><span class="word">Wulff<span>Consulting</span></span></a>
+    <nav class="main" aria-label="Hovedmeny">
+      <a href="#tjenester">Tjenester</a>
+      <a href="#nytt">Nytt</a>
+      <a href="#foredrag">Foredrag</a>
+      <a href="#artikler">Artikler</a>
+      <a href="#om">Om</a>
+      <a class="cta" href="#kontakt">Kontakt</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="hero">
+    <canvas id="net" aria-hidden="true"></canvas>
+    <div class="wrap">
+      <div class="kicker mono"><span>Kristin Wulff, ph.d.</span><span>Rådgiver</span><span>Foredragsholder</span><span>Fasilitator</span></div>
+      <h1>Organisasjons&shy;design for <em>mennesker og&nbsp;KI</em></h1>
+      <p class="lead">Jeg hjelper ledere med å utforme organisasjoner der mennesker, data og KI virker sammen. Jeg bygger på forskning og over 25 års praktisk erfaring med smidige og datadrevne organisasjoner, for ledere som vet at mennesker er nøkkelen til endring.</p>
+      <div class="btns">
+        <a class="btn primary" href="#kontakt">Ta kontakt</a>
+        <a class="btn ghost" href="#foredrag">Se foredrag</a>
+      </div>
+    </div>
+  </div>
+
+  <section id="tjenester">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Hva jeg kan hjelpe med</h2>
+        <p>Når KI blir en del av arbeidet, endres det som skal koordineres: oppgaver, roller, beslutninger og ansvar. Jeg hjelper dere med å designe organisasjonen for det.</p>
+      </div>
+      <div class="services">
+        <div class="service"><span class="mono">01 · Rådgivning</span><h3>Organisasjonsdesign med KI</h3><p>Hvordan bør roller, team og beslutninger organiseres når KI tar over deler av arbeidet? Jeg hjelper dere med å finne en organisering som gir både autonomi og sammenheng.</p></div>
+        <div class="service"><span class="mono">02 · Foredrag</span><h3>Faglig påfyll om KI og organisasjon</h3><p>Foredrag og inspirasjonsdager om sosiotekniske systemer, usikkerhet og hvordan KI kan gi verdi for hele organisasjonen, ikke bare for den enkelte.</p></div>
+        <div class="service"><span class="mono">03 · Fasilitering</span><h3>Workshops som gir retning</h3><p>Fra innovasjon og datahåndtering til hvordan dere organiserer dere når KI-agenter blir en del av arbeidet. Jeg leder prosessen, så dere kan konsentrere dere om innholdet.</p></div>
+        <div class="service"><span class="mono">04 · Prosjektledelse</span><h3>Endring i praksis</h3><p>Prosjektledelse når ny teknologi og nye arbeidsmåter skal innføres samtidig, for eksempel et nytt ERP-system.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="nytt">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Nytt og oppdrag</h2>
+        <p>Et utvalg av hva jeg jobber med nå og har gjort nylig. Mer underveis følger du på LinkedIn.</p>
+      </div>
+      <div class="chips" role="group" aria-label="Filtrer nyheter" id="feed-filter"></div>
+      <div class="feed" id="feed"></div>
+    </div>
+  </section>
+
+  <section id="foredrag">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Foredrag</h2>
+        <p>Et utvalg foredrag fra konferanser. De fleste er filmet og kan ses på Vimeo.</p>
+      </div>
+      <div class="talks" id="talks"></div>
+
+      <div class="courses" aria-label="Undervisning ved NTNU Handelshøyskolen">
+        <div class="course"><span class="mono">BSOL4065</span><h4>Digital transformasjon i organisasjoner</h4><p>NTNU Handelshøyskolen. Faglærer med Xinlu Qiu; hele faget våren 2026.</p></div>
+        <div class="course"><span class="mono">TSOL410</span><h4>Teknologibasert forretningsutvikling</h4><p>Faglærer med Linn Bjerke-Busch og Torild A.W. Oddane.</p></div>
+        <div class="course"><span class="mono">BINT3010</span><h4>Teknologiforståelse</h4><p>Faglærer med Tina Bjørnevik Aune.</p></div>
+        <div class="course"><span class="mono">ORG3021</span><h4>Endringsledelse</h4><p>Gjesteforeleser.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="artikler">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Artikler og forskning</h2>
+        <p>Jeg skriver på Medium om autonome team, uforutsigbarhet, kontroll og multiteam-systemer, sortert etter tema her. Under finner du forskningen min.</p>
+      </div>
+      <div class="articles" id="articles"></div>
+      <p style="margin-top:8px"><a class="btn ghost" href="https://medium.com/@kristinwulff">Alle artikler på Medium ↗</a></p>
+      <div class="research">
+        <h3 class="rh">Forskning</h3>
+        <ul class="pubs" id="pubs"></ul>
+        <p style="margin-top:20px"><a class="btn ghost" href="https://nva.sikt.no/research-profile/998111">Full publikasjonsliste i Nasjonalt vitenarkiv ↗</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="om">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Om Wulff Consulting</h2>
+        <p>Mennesker, prosesser og data, koblet sammen.</p>
+      </div>
+      <div class="about">
+        <div>
+          <p class="big">Wulff Consulting AS hjelper organisasjoner med å bli mer smidige og datadrevne ved å koble sammen mennesker, prosesser og data.</p>
+          <p>Jeg har jobbet med prosessforbedring og organisasjonsutvikling siden 1998, både som konsulent og i lederroller, blant annet i 19 år i Kantega. Siden april 2025 har jeg jobbet på heltid i eget selskap.</p>
+          <p>Rådene mine bygger på forskning. I september 2023 disputerte jeg for ph.d.-graden i organisasjonsdesign ved NTNU, Institutt for industriell økonomi og teknologiledelse (IØT), med professor Hanne Finnestrand som hovedveileder og professor Jonas A. Ingvaldsen og Marit Collin, daværende administrerende direktør i Kantega, som medveiledere. Avhandlingen heter <a href="https://nva.sikt.no/registration/0198ef698a72-109a530e-d4e1-422e-9a85-84ca688df7da"><em>Digital product development and organizational design: Exploring the autonomy of teams in the context of dynamic output</em></a>.</p>
+          <p>Navnet har en historie. Min far, Egil Wulff, drev Wulff Consulting AS fra 2000 til 2010, og vi søsken Kristin, Charlotte og Carsten brukte selskapet som læringsarena. Femten år senere tok jeg navnet og logoen i bruk igjen.</p>
+          <div class="heritage"><img src="data:image/gif;base64,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" alt="Den opprinnelige Wulff Consulting-logoen fra 2000, med tre blå ovaler"><span>Den opprinnelige logoen. De tre ovalene lever videre i den nye.</span></div>
+        </div>
+        <div class="facts">
+          <div class="fact"><span class="mono">Erfaring</span><span><strong>1998–</strong>prosessforbedring og organisasjonsutvikling</span></div>
+          <div class="fact"><span class="mono">Ph.d.</span><span><strong>2023</strong><a href="https://nva.sikt.no/registration/0198ef698a72-109a530e-d4e1-422e-9a85-84ca688df7da">organisasjonsdesign, NTNU IØT</a></span></div>
+          <div class="fact"><span class="mono">Kantega</span><span><strong>19 år</strong>som konsulent og leder</span></div>
+          <div class="fact"><span class="mono">Selskapet</span><span><strong>2025</strong>startet i februar, heltid fra 1. april</span></div>
+          <div class="fact"><span class="mono">Undervisning</span><span><strong>NTNU</strong>Handelshøyskolen, fire emner</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="kontakt" class="contact">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>La oss snakke sammen</h2>
+        <p>Trenger dere en rådgiver, en foredragsholder eller noen til å lede en workshop? Ta kontakt, så finner vi ut av det.</p>
+      </div>
+      <div class="contact-grid">
+        <div><span class="mono">E-post</span><a href="mailto:kristin@wulffconsulting.no">kristin@wulffconsulting.no</a></div>
+        <div><span class="mono">Telefon</span><a href="tel:+4741432460">+47 414 32 460</a></div>
+        <div><span class="mono">Adresse</span><span class="v">Sandgata 10, 7012 Trondheim</span></div>
+        <div><span class="mono">Følg meg</span><a href="https://www.linkedin.com/in/kristin-wulff-5505012/">LinkedIn ↗</a><br><a href="https://medium.com/@kristinwulff">Medium ↗</a></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="yr">2026</span> Wulff Consulting AS</span>
+    <span>Personvern · Privacy · Terms</span>
+  </div>
+</footer>
+
+<script>
+/* ============ INNHOLD – rediger her ============ */
+const FEED = [
+  { type: "Oppdrag", when: "Des 2025 – jul 2026", title: "Ritek: innføring av ERP-system", text: "Prosjektleder for migrering og innføring av nytt ERP-system, i 70 % stilling." },
+  { type: "Oppdrag", when: "Workshop", title: "Gemini Water / Volue", text: "Inspirasjonsworkshop med rammeverket «Ten types of innovation»." },
+  { type: "Oppdrag", when: "Workshop", title: "Norsk havteknologisenter", text: "Innleder og fasilitator på en dags workshop om datahåndtering i Fjordlab-prosjektet." },
+  { type: "Oppdrag", when: "Inspirasjonsdag", title: "SINTEF", text: "Inspirasjonsdag med deler av konsernledelsen om datadrevne organisasjoner og digital transformasjon." },
+  { type: "Foredrag", when: "Nov 2026", title: "Organisasjoner og agentisk KI", url: "https://dataforeningen.no/arrangementer/trondheim/konferanse/make-data-smart-trondheim-2", link: "Om konferansen ↗", text: "Make Data Smart Trondheim: Hvordan kan bruken av AI-agenter løfte teamarbeidet og gi verdi for hele organisasjonen, ikke bare for den enkelte?" },
+  { type: "Foredrag", when: "2026", title: "It is a sociotechnical system – but what does that mean?", text: "Foredrag på Booster 2026.", url: "https://vimeo.com/1173183852", link: "Se opptaket" },
+  { type: "Foredrag", when: "2025", title: "Unpredictable, Unavoidable, Unstoppable", text: "JavaZone 2025, sammen med Anne Høymyr: om å kommunisere usikkerhet med integritet.", url: "https://vimeo.com/1115512214", link: "Se opptaket" },
+  { type: "LinkedIn", when: "Løpende", title: "Følg meg på LinkedIn", text: "Der deler jeg tanker, nye oppdrag og foredrag fortløpende.", url: "https://www.linkedin.com/in/kristin-wulff-5505012/", link: "Gå til LinkedIn ↗", special: "linkedin" }
+];
+
+const TALKS = [
+  { year: "2026", event: "Make Data Smart Trondheim", title: "Organisasjoner og agentisk KI", date: "17. november 2026", nofilm: true, question: "Mange har blitt gode på å bruke AI-agenter hver for seg, slik at de gir individuell verdi, men hvordan kan vi sørge for at bruken av AI-agenter løfter teamarbeidet og gir verdi for teamet og for hele organisasjonen?", links: [["Om konferansen ↗", "https://dataforeningen.no/arrangementer/trondheim/konferanse/make-data-smart-trondheim-2"]] },
+  { year: "2026", event: "Booster", title: "It is a sociotechnical system – but what does that mean?", links: [["Se på Vimeo ↗", "https://vimeo.com/1173183852"]] },
+  { year: "2025", event: "JavaZone", title: "Unpredictable, Unavoidable, Unstoppable: Communicating uncertainty with integrity", with: ["Anne Høymyr", "https://www.linkedin.com/in/anne-h%C3%B8ymyr/"], also: "Et tilsvarende foredrag var keynote på Booster 2025, også sammen med Anne Høymyr.", links: [["JavaZone-opptaket ↗", "https://vimeo.com/1115512214"], ["Booster-opptaket ↗", "https://vimeo.com/1069757807"]] },
+  { year: "2024", event: "Smidig Digitalisering", date: "13. mai 2024", title: "Organisasjonsdesign for teamarbeid", question: "Hvordan passer teori om organisasjonsdesign med de modellene vi bruker?", links: [["Foredraget ↗", "https://vimeo.com/showcase/11163324?video=946106543"], ["Paneldebatten ↗", "https://vimeo.com/showcase/11163324?video=946228989"], ["Om konferansen ↗", "https://www.smidig.no/event/smidig-digitalisering-2024"]] },
+  { year: "2024", event: "JavaZone", title: "Støyreduksjon (outcome) eller støyskjerm (output)?", links: [["Se foredraget ↗", "https://share.google/35jeSP13l99Nt63J4"]] }
+];
+
+const ARTICLES = [
+  { theme: "Multiteam-systemer", items: [
+    ["Multiteam systems (MTS) – et begrepsapparat jeg tror kan være nyttig", "https://medium.com/@kristinwulff/multiteam-systemer-mts-et-begrepsapparat-jeg-tror-kan-v%C3%A6re-nyttig-3bd78b474521"],
+    ["Multiteam system (MTS) og avhengigheter (Del 2)", "https://medium.com/wulffconsultingas/multiteam-system-mts-og-avhengigheter-0051e021900b"] ] },
+  { theme: "Graden av forutsigbarhet", items: [
+    ["Hvor er uforutsigbarheten i arbeidet du gjør?", "https://medium.com/kantega/hvor-er-uforutsigbarheten-i-det-arbeidet-du-gj%C3%B8r-149486346183"],
+    ["Dynamisk effektivitet versus stabil effektivitet", "https://medium.com/kantega/dynamisk-effektivitet-vs-stabil-effektivit-44b146cdaa94"],
+    ["Autonomi + uforutsigbarhet = sant", "https://medium.com/kantega/autonomi-uforutsigbarhet-sant-dbe698a00b36"],
+    ["«Det er ingen grunn til panikk» – å jobbe i det komplekse", "https://medium.com/kantega/det-er-ingen-grunn-til-panikk-%C3%A5-jobbe-i-det-komplekse-46518d291b1a"],
+    ["Utvikling av nye produkter: Hva slags suksessfaktor er viktigst?", "https://medium.com/kantega/utvikling-av-nye-produkter-hva-slags-suksessfaktor-er-viktigst-f8d4d7dbf03"],
+    ["Prosjektlederen er død – leve prosjektlederen?", "https://medium.com/kantega/prosjektlederen-er-d%C3%B8d-leve-prosjektlederen-b10fd47d56f5"],
+    ["Grensesetting og samarbeid", "https://medium.com/kantega/grensesetting-og-samarbeid-6735a5bc3004"] ] },
+  { theme: "Autonomi for innovasjon", items: [
+    ["Hvor autonomt må et team være?", "https://medium.com/kantega/hvor-autonomt-m%C3%A5-et-team-v%C3%A6re-cf732d36fb3e"],
+    ["Har teamet ditt resultatautonomi?", "https://medium.com/kantega/har-teamet-ditt-resultatautonomi-56ddd7a0b3ab"],
+    ["Autonomi = retten til å ta feil", "https://medium.com/kantega/autonomi-retten-til-%C3%A5-ta-feil-e6fe7a615a53"],
+    ["Tenke sjæl og mene – smidig organisering", "https://medium.com/kantega/tenke-sj%C3%A6l-og-mene-smidig-organisering-13c75def4c1"] ] },
+  { theme: "Autonome team", items: [
+    ["Autonomt team betyr ikke «jeg gjør som jeg vil»", "https://medium.com/kantega/autonomt-team-betyr-ikke-jeg-gj%C3%B8r-som-jeg-vil-55115a26ce7d"],
+    ["Autonomt team betyr ikke «uten rammer»", "https://medium.com/kantega/autonomt-team-betyr-ikke-uten-rammer-235f7f826fd8"],
+    ["Autonomt team betyr ikke «uten teamleder»", "https://medium.com/kantega/autonomt-team-betyr-ikke-uten-teamleder-08eb6e4e8136"],
+    ["Autonomt team betyr ikke «fri til å velge all slags teknologi»", "https://medium.com/kantega/autonomt-team-betyr-ikke-fri-til-%C3%A5-velge-all-slags-teknologi-b73aafd5fa23"],
+    ["Autonomt team betyr ikke frihet fra avhengigheter", "https://medium.com/kantega/%C3%A5-v%C3%A6re-et-autonomt-team-betyr-ikke-frihet-fra-avhengigheter-d4b39a8ccff7"] ] },
+  { theme: "Kontroll og arkitektur", items: [
+    ["Kontroll er viktig – men over hva?", "https://medium.com/kantega/kontroll-er-viktig-men-over-hva-af36bae43ee2"],
+    ["Organisasjonsarkitektur og -design", "https://medium.com/kantega/organisasjonsarkitektur-og-design-e4297a98784f"] ] }
+];
+
+const PUBS = [
+  { year: "2023", title: "Digital product development and organizational design: Exploring the autonomy of teams in the context of dynamic output", src: "Doktoravhandling, NTNU", url: "https://nva.sikt.no/registration/0198ef698a72-109a530e-d4e1-422e-9a85-84ca688df7da", text: "Hva skal team som utvikler digitale produkter, ha autonomi over, når det de lager hele tiden endrer seg? Avhandlingen bruker sosioteknisk systemdesign til å svare." },
+  { year: "2023", title: "Creating meaningful work in the age of AI: explainable AI, explainability, and why it matters to organizational designers", src: "Wulff & Finnestrand · AI & Society", url: "https://doi.org/10.1007/s00146-023-01633-0", text: "Om forklarbar KI, og hvorfor det angår dem som designer organisasjoner og meningsfullt arbeid." },
+  { year: "2023", title: "Data-driven information for action", src: "Wulff & Finnestrand · Gruppe. Interaktion. Organisation. (GIO)", url: "https://doi.org/10.1007/s11612-023-00666-9", text: "Hvordan data samles inn og brukes i organisasjoner som vil bli datadrevne. Bygger på intervjuer med ledere og designere i 13 organisasjoner." },
+  { year: "2021", title: "It is like taking a ball for a walk: on boundary work in software development", src: "Wulff & Finnestrand · AI & Society", url: "https://doi.org/10.1007/s00146-021-01175-3", text: "Hvordan grensearbeid i utviklingsteam påvirker hvor mye autonomi teamet faktisk får." }
+];
+/* ============ slutt på innhold ============ */
+
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+// Strøm med filter
+const types = ["Alle", ...new Set(FEED.map(f => f.type))];
+let active = "Alle";
+const filterEl = document.getElementById("feed-filter");
+const feedEl = document.getElementById("feed");
+function renderFeed() {
+  filterEl.innerHTML = types.map((t, i) => `<button class="chip" id="chip-${i}" aria-pressed="${t === active}" data-t="${esc(t)}">${esc(t)}</button>`).join("");
+  feedEl.innerHTML = FEED.filter(f => active === "Alle" || f.type === active).map(f => `
+    <article class="item ${f.special || ""}" data-type="${esc(f.type)}">
+      <div class="meta mono"><span class="tag">${esc(f.type)}</span><span>${esc(f.when)}</span></div>
+      <h3>${esc(f.title)}</h3>
+      <p>${esc(f.text)}</p>
+      ${f.url ? `<a class="more" href="${esc(f.url)}">${esc(f.link || "Les mer")}</a>` : ""}
+    </article>`).join("");
+}
+filterEl.addEventListener("click", e => { const b = e.target.closest(".chip"); if (!b) return; active = b.dataset.t; renderFeed(); document.querySelector(`.chip[data-t="${CSS.escape(active)}"]`)?.focus(); });
+renderFeed();
+
+document.getElementById("talks").innerHTML = TALKS.map(t => `
+  <div class="talk">
+    <span class="year">${esc(t.year)}</span>
+    <div><h3>${esc(t.title)}</h3>${t.question ? `<p class="q">«${esc(t.question)}»</p>` : ""}<p class="mono">${esc(t.event)} ${esc(t.date || t.year)}${t.with ? ` · sammen med <a href="${esc(t.with[1])}">${esc(t.with[0])}</a>` : ""}</p>${t.also ? `<p>${esc(t.also)}</p>` : ""}</div>
+    <div class="links">${t.links.map(([l, u]) => `<a href="${esc(u)}">${esc(l)}</a>`).join("")}${t.nofilm ? `<span class="mono" style="color:var(--muted);font-weight:400">Ikke filmet</span>` : ""}</div>
+  </div>`).join("");
+
+document.getElementById("articles").innerHTML = ARTICLES.map(g => `
+  <div class="theme"><h3><span>${esc(g.theme)}</span><span class="mono">${g.items.length}</span></h3>
+  <ol>${g.items.map(([t, u]) => `<li><a href="${esc(u)}">${esc(t)}</a></li>`).join("")}</ol></div>`).join("");
+
+
+document.getElementById("pubs").innerHTML = PUBS.map(p => `
+  <li class="pub"><span class="yr">${esc(p.year)}</span>
+  <div><a class="t" href="${esc(p.url)}">${esc(p.title)} ↗</a><span class="src mono">${esc(p.src)}</span><p>${esc(p.text)}</p></div></li>`).join("");
+document.getElementById("yr").textContent = new Date().getFullYear();
+
+// Hero: et multiteam-system – team (klynger) med tette koblinger internt og noen få på tvers
+(function () {
+  const cv = document.getElementById("net"), ctx = cv.getContext("2d");
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let W, H, nodes = [], links = [], col = {};
+  function readColors() { const s = getComputedStyle(document.documentElement); col = { ink: s.getPropertyValue("--ink").trim(), line: s.getPropertyValue("--line").trim(), accent: s.getPropertyValue("--accent").trim() }; }
+  function rand(seed) { return () => (seed = (seed * 16807) % 2147483647) / 2147483647; }
+  function build() {
+    const r = rand(7);
+    const dpr = window.devicePixelRatio || 1;
+    W = cv.clientWidth; H = cv.clientHeight; cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    nodes = []; links = [];
+    const narrow = W < 760;
+    const centers = narrow
+      ? [[0.78, 0.18], [0.92, 0.5], [0.72, 0.85]]
+      : [[0.62, 0.25], [0.84, 0.2], [0.74, 0.62], [0.93, 0.72], [0.55, 0.82]];
+    centers.forEach(([cx, cy], ti) => {
+      const n = 4 + Math.floor(r() * 3), start = nodes.length;
+      for (let i = 0; i < n; i++) {
+        const a = (i / n) * Math.PI * 2 + r(), d = 28 + r() * 34;
+        nodes.push({ bx: cx * W + Math.cos(a) * d, by: cy * H + Math.sin(a) * d, ph: r() * 6.28, t: ti, lead: i === 0 });
+      }
+      for (let i = start; i < nodes.length; i++) for (let j = i + 1; j < nodes.length; j++) if (r() < 0.7) links.push([i, j, false]);
+    });
+    const leads = nodes.map((n, i) => n.lead ? i : -1).filter(i => i >= 0);
+    for (let k = 0; k < leads.length; k++) links.push([leads[k], leads[(k + 1) % leads.length], true]);
+    links.push([leads[0], leads[Math.min(2, leads.length - 1)], true]);
+  }
+  function draw(time) {
+    ctx.clearRect(0, 0, W, H);
+    const tt = reduce ? 0 : time / 1000;
+    const pos = nodes.map(n => [n.bx + Math.sin(tt * 0.5 + n.ph) * 4, n.by + Math.cos(tt * 0.4 + n.ph) * 4]);
+    links.forEach(([a, b, x]) => {
+      ctx.beginPath(); ctx.moveTo(...pos[a]); ctx.lineTo(...pos[b]);
+      ctx.strokeStyle = x ? col.accent : col.line; ctx.lineWidth = x ? 1.6 : 1; ctx.setLineDash(x ? [5, 5] : []);
+      ctx.lineDashOffset = x ? -tt * 8 : 0; ctx.stroke();
+    });
+    ctx.setLineDash([]);
+    nodes.forEach((n, i) => {
+      ctx.beginPath(); ctx.arc(pos[i][0], pos[i][1], n.lead ? 6 : 3.5, 0, Math.PI * 2);
+      ctx.fillStyle = n.lead ? col.accent : col.ink; ctx.fill();
+    });
+    if (!reduce) requestAnimationFrame(draw);
+  }
+  readColors(); build(); requestAnimationFrame(draw);
+  addEventListener("resize", () => { build(); if (reduce) draw(0); });
+  new MutationObserver(() => { readColors(); if (reduce) draw(0); }).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+  matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => { readColors(); if (reduce) draw(0); });
+})();
+</script>
+</body>
+</html>
