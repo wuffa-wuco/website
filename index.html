@@ -170,10 +170,13 @@ section { padding: clamp(56px, 8vw, 96px) 0; border-bottom: 1px solid var(--line
 /* Kontakt */
 .contact { background: var(--ink); color: var(--paper); border-bottom: 0; }
 .contact .sec-head p { color: color-mix(in srgb, var(--paper) 70%, transparent); }
-.contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; }
+.contact-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 24px 32px; }
+@media (max-width: 1000px) { .contact-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .contact-grid { grid-template-columns: 1fr; } }
 .contact-grid div { border-top: 1px solid color-mix(in srgb, var(--paper) 30%, transparent); padding-top: 14px; }
 .contact-grid .mono { color: var(--accent); display: block; margin-bottom: 4px; }
-.contact-grid a, .contact-grid span.v { font-family: var(--display); font-size: 1.3rem; font-weight: 600; font-stretch: 90%; word-break: break-word; }
+.contact-grid a, .contact-grid span.v { font-family: var(--display); font-size: clamp(1.1rem, 0.9rem + 0.6vw, 1.3rem); font-weight: 600; font-stretch: 90%; }
+.contact-grid a[href^="mailto"] { white-space: nowrap; }
 .contact a:hover { color: var(--accent); }
 footer { background: var(--ink); color: color-mix(in srgb, var(--paper) 60%, transparent); padding: 24px 0 40px; font-family: var(--mono); font-size: 0.8rem; }
 footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; border-top: 1px solid color-mix(in srgb, var(--paper) 20%, transparent); padding-top: 20px; }
