@@ -139,7 +139,7 @@ section { padding: clamp(56px, 8vw, 96px) 0; border-bottom: 1px solid var(--line
 
 /* Scenebilde */
 .stage { margin: 0 0 40px; }
-.stage img { display: block; width: 100%; height: auto; max-height: 560px; object-fit: cover; object-position: 40% 45%; border-radius: 6px; }
+.stage img { display: block; width: 100%; height: auto; max-height: 560px; object-fit: cover; object-position: 50% 40%; border-radius: 6px; }
 .stage figcaption { color: var(--muted); margin-top: 10px; }
 
 /* Undervisning */
@@ -173,7 +173,11 @@ section { padding: clamp(56px, 8vw, 96px) 0; border-bottom: 1px solid var(--line
 .about { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 48px; }
 .about p { margin: 0 0 1em; max-width: 38rem; }
 .about .big { font-size: 1.45rem; line-height: 1.45; }
-.facts { border-top: 2px solid var(--ink); align-self: start; }
+.side { align-self: start; display: grid; gap: 28px; }
+.portrait { margin: 0; }
+.portrait img { display: block; width: 100%; max-width: 360px; height: auto; border-radius: 6px; }
+.portrait figcaption { color: var(--muted); margin-top: 8px; }
+.facts { border-top: 2px solid var(--ink); }
 .fact { display: grid; grid-template-columns: 6.5rem 1fr; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--line); font-size: 1rem; }
 .fact .mono { color: var(--muted); padding-top: 3px; }
 .fact strong { font-family: var(--display); font-weight: 700; font-size: 1.6rem; font-stretch: 80%; display: block; line-height: 1; }
@@ -257,7 +261,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wr
         <p>Et utvalg foredrag fra konferanser. De fleste er filmet og kan ses på Vimeo.</p>
       </div>
       <figure class="stage">
-        <img src="images/make-data-smart-2026.jpg" width="1024" height="683" loading="lazy" alt="Kristin Wulff holder foredrag fra scenen på Make Data Smart Trondheim 2026, med publikum i forgrunnen og lysbildet «Dialog med forskning» på skjermen.">
+        <img src="images/make-data-smart-2026.jpg" width="1800" height="1200" loading="lazy" alt="Kristin Wulff holder foredrag på Make Data Smart Trondheim 2026 og peker mot et lysbilde om hvilke oppgaver som bør gis til KI-agenter, med publikum i forgrunnen.">
         <figcaption class="mono">Make Data Smart Trondheim, november 2026 · Foto: Ingunn Moen</figcaption>
       </figure>
       <div class="talks" id="talks"></div>
@@ -301,12 +305,15 @@ footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wr
           <p>Navnet har en historie. Min far, Egil Wulff, drev Wulff Consulting AS fra 2000 til 2010, og vi søsken Kristin, Charlotte og Carsten brukte selskapet som læringsarena. Femten år senere tok jeg navnet og logoen i bruk igjen.</p>
           <div class="heritage"><img src="data:image/gif;base64,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" alt="Den opprinnelige Wulff Consulting-logoen fra 2000, med tre blå ovaler"><span>Den opprinnelige logoen. De tre ovalene lever videre i den nye.</span></div>
         </div>
+        <div class="side">
+        <figure class="portrait"><img src="images/kristin-wulff.jpg" width="464" height="580" loading="lazy" alt="Kristin Wulff på scenen under Make Data Smart Trondheim 2026"><figcaption class="mono">Kristin Wulff · Foto: Ingunn Moen</figcaption></figure>
         <div class="facts">
           <div class="fact"><span class="mono">Erfaring</span><span><strong>1998–</strong>prosessforbedring og organisasjonsutvikling</span></div>
           <div class="fact"><span class="mono">Ph.d.</span><span><strong>2023</strong><a href="https://nva.sikt.no/registration/0198ef698a72-109a530e-d4e1-422e-9a85-84ca688df7da">organisasjonsdesign, NTNU IØT</a></span></div>
           <div class="fact"><span class="mono">Kantega</span><span><strong>19 år</strong>som konsulent og leder</span></div>
           <div class="fact"><span class="mono">Selskapet</span><span><strong>2025</strong>startet i februar, heltid fra 1. april</span></div>
           <div class="fact"><span class="mono">Undervisning</span><span><strong>NTNU</strong>Handelshøyskolen, fire emner</span></div>
+        </div>
         </div>
       </div>
     </div>
