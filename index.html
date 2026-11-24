@@ -5,6 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Wulff Consulting AS – Organisasjonsdesign for mennesker og KI</title>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.wulffconsulting.no/">
+<meta property="og:title" content="Wulff Consulting AS – Organisasjonsdesign for mennesker og KI">
+<meta property="og:description" content="Rådgivning, foredrag og fasilitering ved Kristin Wulff, ph.d., Trondheim.">
+<meta property="og:image" content="https://www.wulffconsulting.no/images/make-data-smart-2026.jpg">
+<meta property="og:image:alt" content="Kristin Wulff holder foredrag på Make Data Smart Trondheim 2026">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="description" content="Wulff Consulting AS – organisasjonsdesign for mennesker og KI. Rådgivning, foredrag og fasilitering ved Kristin Wulff, ph.d., Trondheim.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -130,6 +137,11 @@ section { padding: clamp(56px, 8vw, 96px) 0; border-bottom: 1px solid var(--line
 .talk .links { display: flex; gap: 14px; flex-wrap: wrap; font-family: var(--display); font-weight: 600; font-size: 0.95rem; }
 @media (max-width: 640px) { .talk { grid-template-columns: 1fr; } }
 
+/* Scenebilde */
+.stage { margin: 0 0 40px; }
+.stage img { display: block; width: 100%; height: auto; max-height: 560px; object-fit: cover; object-position: 40% 45%; border-radius: 6px; }
+.stage figcaption { color: var(--muted); margin-top: 10px; }
+
 /* Undervisning */
 .courses { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 48px; }
 .course { border-top: 1px solid var(--ink); padding-top: 14px; }
@@ -244,6 +256,10 @@ footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wr
         <h2>Foredrag</h2>
         <p>Et utvalg foredrag fra konferanser. De fleste er filmet og kan ses på Vimeo.</p>
       </div>
+      <figure class="stage">
+        <img src="images/make-data-smart-2026.jpg" width="1024" height="683" loading="lazy" alt="Kristin Wulff holder foredrag fra scenen på Make Data Smart Trondheim 2026, med publikum i forgrunnen og lysbildet «Dialog med forskning» på skjermen.">
+        <figcaption class="mono">Make Data Smart Trondheim, november 2026 · Foto: Ingunn Moen</figcaption>
+      </figure>
       <div class="talks" id="talks"></div>
 
       <div class="courses" aria-label="Undervisning ved NTNU Handelshøyskolen">
