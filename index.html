@@ -118,6 +118,8 @@ section { padding: clamp(56px, 8vw, 96px) 0; border-bottom: 1px solid var(--line
 .item .tag { color: var(--ink); font-weight: 500; }
 .item h3 { font-size: 1.25rem; font-weight: 650; font-stretch: 90%; }
 .item p { margin: 0; font-size: 1rem; color: var(--muted); }
+.item .tags { list-style: none; margin: 2px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.item .tags li { font-size: 0.75rem; padding: 2px 9px; border: 1px solid var(--line); border-radius: 999px; color: var(--ink); }
 .item a.more { margin-top: auto; font-family: var(--display); font-weight: 600; font-size: 0.95rem; }
 .item[data-type="Oppdrag"] { --tag: var(--accent); }
 .item[data-type="Foredrag"] { --tag: var(--ink); }
@@ -346,6 +348,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wr
 /* ============ INNHOLD – rediger her ============ */
 const FEED = [
   { type: "Oppdrag", when: "Des 2025 – jul 2026", title: "Ritek: innføring av ERP-system", text: "Prosjektleder for migrering og innføring av nytt ERP-system, i 70 % stilling." },
+  { type: "Oppdrag", when: "2025–2026", title: "Adolf Øiens Næringsfond: fagkonsulent", text: "Adolf Øiens etablererstipend er anerkjent for en grundig prosess og stor treffsikkerhet på hvilke bedrifter som kommer til å lykkes. Jeg har vært fagkonsulent der i flere år, sammen med Trond Stiklestad fra NTNU Handelshøyskolen.", tags: ["Entreprenørskap", "Forretningsmodeller", "Innovasjon"] },
   { type: "Oppdrag", when: "Workshop", title: "Gemini Water / Volue", text: "Inspirasjonsworkshop med rammeverket «Ten types of innovation»." },
   { type: "Oppdrag", when: "Workshop", title: "Norsk havteknologisenter", text: "Innleder og fasilitator på en dags workshop om datahåndtering i Fjordlab-prosjektet." },
   { type: "Oppdrag", when: "Inspirasjonsdag", title: "SINTEF", text: "Inspirasjonsdag med deler av konsernledelsen om datadrevne organisasjoner og digital transformasjon." },
@@ -429,6 +432,7 @@ function renderFeed() {
       <div class="meta mono"><span class="tag">${esc(f.type)}</span><span>${esc(f.when)}</span></div>
       <h3>${esc(f.title)}</h3>
       <p>${esc(f.text)}</p>
+      ${f.tags ? `<ul class="tags mono">${f.tags.map(t => `<li>${esc(t)}</li>`).join("")}</ul>` : ""}
       ${f.url ? `<a class="more" href="${esc(f.url)}">${esc(f.link || "Les mer")}</a>` : ""}
     </article>`).join("");
 }
