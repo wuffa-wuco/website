@@ -368,6 +368,7 @@ const ARTICLES = [
     ["Multiteam systems (MTS) – et begrepsapparat jeg tror kan være nyttig", "https://medium.com/@kristinwulff/multiteam-systemer-mts-et-begrepsapparat-jeg-tror-kan-v%C3%A6re-nyttig-3bd78b474521"],
     ["Multiteam system (MTS) og avhengigheter (Del 2)", "https://medium.com/wulffconsultingas/multiteam-system-mts-og-avhengigheter-0051e021900b"],
     ["Hvor dynamisk trenger beslutninger å være? Multiteam system (Del 3)", "https://medium.com/wulffconsultingas/hvor-dynamisk-trenger-beslutninger-%C3%A5-v%C3%A6re-multiteam-system-del-3-adbd5f60e49a"] ] },
+  { theme: "Datadrevne organisasjoner", items: [ ] },
   { theme: "Graden av forutsigbarhet", items: [
     ["Hvor er uforutsigbarheten i arbeidet du gjør?", "https://medium.com/kantega/hvor-er-uforutsigbarheten-i-det-arbeidet-du-gj%C3%B8r-149486346183"],
     ["Dynamisk effektivitet versus stabil effektivitet", "https://medium.com/kantega/dynamisk-effektivitet-vs-stabil-effektivit-44b146cdaa94"],
@@ -427,7 +428,7 @@ document.getElementById("talks").innerHTML = TALKS.map(t => `
     <div class="links">${t.links.map(([l, u]) => `<a href="${esc(u)}">${esc(l)}</a>`).join("")}${t.nofilm ? `<span class="mono" style="color:var(--muted);font-weight:400">Ikke filmet</span>` : ""}</div>
   </div>`).join("");
 
-document.getElementById("articles").innerHTML = ARTICLES.map(g => `
+document.getElementById("articles").innerHTML = ARTICLES.filter(g => g.items.length).map(g => `
   <div class="theme"><h3><span>${esc(g.theme)}</span><span class="mono">${g.items.length}</span></h3>
   <ol>${g.items.map(([t, u]) => `<li><a href="${esc(u)}">${esc(t)}</a></li>`).join("")}</ol></div>`).join("");
 
