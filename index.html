@@ -124,6 +124,7 @@ section { padding: clamp(56px, 8vw, 96px) 0; border-bottom: 1px solid var(--line
 .item[data-type="Oppdrag"] { --tag: var(--accent); }
 .item[data-type="Foredrag"] { --tag: var(--ink); }
 .item[data-type="LinkedIn"] { --tag: #3d7cc9; }
+.item[data-type="Artikkel"] { --tag: var(--muted); }
 .item.linkedin { background: var(--ink); color: var(--paper); border-color: var(--ink); }
 .item.linkedin p, .item.linkedin .meta { color: color-mix(in srgb, var(--paper) 75%, transparent); }
 .item.linkedin .tag { color: var(--paper); }
@@ -347,6 +348,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wr
 <script>
 /* ============ INNHOLD – rediger her ============ */
 const FEED = [
+  { type: "Artikkel", when: "Nov 2026", title: "KI-agentene skaper stor strekk i laget!", text: "Noen medarbeidere mestrer den nye KI-hverdagen godt, andre ikke. Fem grep for ledere som vil gjøre hele organisasjonen til en smart KI-bruker.", url: "https://kristinwulff.medium.com/ki-agentene-skaper-stor-strekk-i-laget-414bfaec8446", link: "Les artikkelen ↗" },
   { type: "Oppdrag", when: "Des 2025 – jul 2026", title: "Ritek: innføring av ERP-system", text: "Prosjektleder for migrering og innføring av nytt ERP-system, i 70 % stilling.", tags: ["Prosjektledelse", "Endringsledelse"] },
   { type: "Oppdrag", when: "Ledermøte", title: "Trondheim Symfoniorkester: rådgiver", text: "Ledelsen i Trondheim Symfoniorkester lurte på hvordan de skulle ta tak i KI. Oppdraget besto av at jeg holdt et innlegg og la til rette for dialog på et ledermøte.", tags: ["Kunstig intelligens", "Datadrevne organisasjoner"] },
   { type: "Oppdrag", when: "2025–2026", title: "NTNU Handelshøyskolen: faglærer", text: "Faglærer i fire emner, blant annet Digital transformasjon i organisasjoner, Teknologibasert forretningsutvikling og Teknologiforståelse.", url: "#undervisning", link: "Se emnene", tags: ["Undervisning", "Digital transformasjon"] },
@@ -371,6 +373,7 @@ const TALKS = [
 
 const ARTICLES = [
   { theme: "KI og organisasjon", items: [
+    ["KI-agentene skaper stor strekk i laget!", "https://kristinwulff.medium.com/ki-agentene-skaper-stor-strekk-i-laget-414bfaec8446"],
     ["Nå blir alle (prosess)designere", "https://medium.com/kantega/n%C3%A5-blir-alle-prosess-designere-23f23244ce98"],
     ["Ikke alle får til å forbedre sin egen arbeidsprosess med KI", "https://medium.com/wulffconsultingas/ikke-alle-som-f%C3%A5r-til-%C3%A5-forbedre-sin-egen-arbeidsprosess-med-ki-47d85532af78"] ] },
   { theme: "Multiteam-systemer", items: [
